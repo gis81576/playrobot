@@ -441,7 +441,7 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
         V.add(steering, inputs=['angle'])
         V.add(throttle, inputs=['throttle'])
 		
-    elif cfg.DRIVE_TRAIN_TYPE == "playrobot":
+    elif cfg.DRIVE_TRAIN_TYPE == "playrobot":  #20190801 by wei yu han
         from donkeycar.parts.actuator import PCA9685, PWMSteering, PWMThrottle
         from donkeycar.parts.actuator import TwoWheelSteeringThrottle
 
