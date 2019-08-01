@@ -440,6 +440,31 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
 
         V.add(steering, inputs=['angle'])
         V.add(throttle, inputs=['throttle'])
+		
+    elif cfg.DRIVE_TRAIN_TYPE == "playrobot":
+        from donkeycar.parts.actuator import PCA9685, PWMSteering, PWMThrottle
+        from donkeycar.parts.actuator import TwoWheelSteeringThrottle
+
+        steering_controller = PCA9685(cfg.STEERING_CHANNEL, cfg.PCA9685_I2C_ADDR, busnum=cfg.PCA9685_I2C_BUSNUM)
+        steering_left = PWMThrottle(controller=steering_controller,
+                                        min_pulse=cfg.THROTTLE_FORWARD_PWM+1,
+                                        zero_pulse=cfg.THROTTLE_STOPPED_PWM+1, 
+                                        max_pulse=cfg.THROTTLE_REVERSE_PWM+1)
+        
+        throttle_controller = PCA9685(cfg.THROTTLE_CHANNEL, cfg.PCA9685_I2C_ADDR, busnum=cfg.PCA9685_I2C_BUSNUM)
+        steering_right = PWMThrottle(controller=throttle_controller,
+                                        max_pulse=cfg.THROTTLE_FORWARD_PWM,
+                                        zero_pulse=cfg.THROTTLE_STOPPED_PWM, 
+                                        min_pulse=cfg.THROTTLE_REVERSE_PWM)
+        two_wheel_control = TwoWheelSteeringThrottle()
+
+        V.add(two_wheel_control, 
+                inputs=['throttle', 'angle'],
+                outputs=['left_motor_speed', 'right_motor_speed'])
+
+        V.add(steering_left, inputs=['left_motor_speed'])
+        V.add(steering_right, inputs=['right_motor_speed'])
+    		
     
 
     elif cfg.DRIVE_TRAIN_TYPE == "DC_STEER_THROTTLE":

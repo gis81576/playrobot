@@ -25,7 +25,7 @@ DRIVE_LOOP_HZ = 20      # the vehicle loop will pause if faster than this speed.
 MAX_LOOPS = None        # the vehicle loop can abort after this many iterations, when given a positive integer.
 
 #CAMERA
-CAMERA_TYPE = "PICAM"   # (PICAM|WEBCAM|CVCAM|CSIC|V4L|MOCK)
+CAMERA_TYPE = "WEBCAM"   # (PICAM|WEBCAM|CVCAM|CSIC|V4L|MOCK)
 IMAGE_W = 160
 IMAGE_H = 120
 IMAGE_DEPTH = 3         # default RGB=3, make 1 for mono
@@ -100,7 +100,7 @@ PRUNE_EVAL_PERCENT_OF_DATASET = .05  # percent of dataset used to perform evalua
 PI_USERNAME = "pi"                  # username on pi
 PI_PASSWD = "raspberry"             # password is optional. Only used from Windows machine. Ubuntu and mac users should copy their public keys to the pi. `ssh-copy-id username@hostname`
 PI_HOSTNAME = "raspberrypi.local"   # the network hostname or ip address
-PI_DONKEY_ROOT = "/home/pi/mycar"   # the location of the mycar dir on the pi. this will be used to help locate the final model destination.
+PI_DONKEY_ROOT = "/home/pi/TESTcar"   # the location of the mycar dir on the pi. this will be used to help locate the final model destination.
 
 # Region of interst cropping
 # only supported in Categorical and Linear models.
