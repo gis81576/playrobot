@@ -124,7 +124,7 @@ JOYSTICK_MAX_THROTTLE = 1.0         #this scalar is multiplied with the -1 to 1 
 # #For the categorical model, this limits the upper bound of the learned throttle
 # #it's very IMPORTANT that this value is matched from the training PC config.py and the robot.py
 # #and ideally wouldn't change once set.
-# MODEL_CATEGORICAL_MAX_THROTTLE_RANGE = 0.5
+MODEL_CATEGORICAL_MAX_THROTTLE_RANGE = 1.0
 # 
 # #RNN or 3D
 # SEQUENCE_LENGTH = 3             #some models use a number of images over time. This controls how many.
